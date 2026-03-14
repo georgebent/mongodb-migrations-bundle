@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

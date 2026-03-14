@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\ApplicationError;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\GenerateMigrationResult;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\ApplicationError;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\GenerateMigrationResult;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 final readonly class FileMigrationFileGenerator implements MigrationFileGeneratorInterface
 {
@@ -27,7 +27,7 @@ final readonly class FileMigrationFileGenerator implements MigrationFileGenerato
 
     private const string TEMPLATE_DECLARE = "declare(strict_types=1);\n";
 
-    private const string TEMPLATE_USE_MIGRATION_INTERFACE = 'use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;';
+    private const string TEMPLATE_USE_MIGRATION_INTERFACE = 'use GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface;';
 
     private const string TEMPLATE_USE_DATABASE = 'use MongoDB\Database;';
 

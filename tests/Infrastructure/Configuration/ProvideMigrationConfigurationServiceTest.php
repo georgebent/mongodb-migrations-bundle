@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\Configuration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\Configuration;
 
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Configuration\ProvideMigrationConfigurationService;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Configuration\ProvideMigrationConfigurationService;
 use PHPUnit\Framework\TestCase;
 
 final class ProvideMigrationConfigurationServiceTest extends TestCase

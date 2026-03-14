@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "GeorgeBent\\MongodbMigrationsBundle\\": "src/"
+            "GeorgeBent\\MongoDBMigrationsBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "GeorgeBent\\MongodbMigrationsBundle\\Tests\\": "tests/"
+            "GeorgeBent\\MongoDBMigrationsBundle\\Tests\\": "tests/"
         }
     },
     "scripts": {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 interface MigrationPlanCalculatorInterface
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Domain\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Domain\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 use PHPUnit\Framework\TestCase;
 
 final class MigrationVersionTest extends TestCase

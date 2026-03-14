@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Factory;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Factory;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationDefinition;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationDefinition;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 final readonly class MigrationDefinitionFactory
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory;
+namespace GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationStatusNumbers;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationStatusNumbers;
 
 final readonly class MigrationStatusNumbersFactory
 {

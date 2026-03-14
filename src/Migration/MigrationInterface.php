@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Migration;
 
 use MongoDB\Database;
 

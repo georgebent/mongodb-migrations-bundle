@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
 
 final readonly class GenerateMigrationService implements GenerateMigrationInterface
 {

@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
 use MongoDB\Client;
 use MongoDB\Database;
 
-final readonly class MongoDbDatabaseFactory
-implements DatabaseFactoryInterface
+final readonly class MongoDBDatabaseFactory implements DatabaseFactoryInterface
 {
     private const string ERROR_DATABASE_URL_MISSING = 'MongoDB database URL is not configured.';
 

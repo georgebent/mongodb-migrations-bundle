@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;

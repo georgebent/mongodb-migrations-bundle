@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Configuration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Configuration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationConfigurationResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationConfigurationResult;
 
 final readonly class ProvideMigrationConfigurationService implements MigrationConfigurationProviderInterface
 {

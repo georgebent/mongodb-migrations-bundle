@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRegistryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationPlanFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\ApplicationError;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationDefinition;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlanResult;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRegistryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationPlanFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\ApplicationError;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationDefinition;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationPlanResult;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 final readonly class CalculateMigrationPlanService implements MigrationPlanCalculatorInterface
 {

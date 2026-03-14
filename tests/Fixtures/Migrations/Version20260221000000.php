@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Fixtures\Migrations;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Fixtures\Migrations;
 
-use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface;
 use MongoDB\Database;
 
 final class Version20260221000000 implements MigrationInterface

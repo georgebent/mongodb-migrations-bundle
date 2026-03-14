@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Contract\ResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationStatus;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Contract\ResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationStatus;
 
 interface MigrationStatusResultInterface extends ResultInterface
 {

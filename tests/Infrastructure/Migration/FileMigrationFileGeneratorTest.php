@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator;
 use PHPUnit\Framework\TestCase;
 
 final class FileMigrationFileGeneratorTest extends TestCase

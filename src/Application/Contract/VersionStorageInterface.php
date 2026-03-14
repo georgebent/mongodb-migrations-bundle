@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 interface VersionStorageInterface
 {
@@ -12,11 +12,11 @@ interface VersionStorageInterface
 
     public function latestExecuted(MigrationConfiguration $configuration): ?MigrationVersion;
 
-    public function has(MigrationConfiguration $configuration, MigrationVersion $version): bool;
+    public function has(MigrationConfiguration $configuration, MigrationVersion $migrationVersion): bool;
 
-    public function markExecuted(MigrationConfiguration $configuration, MigrationVersion $version): void;
+    public function markExecuted(MigrationConfiguration $configuration, MigrationVersion $migrationVersion): void;
 
-    public function markRolledBack(MigrationConfiguration $configuration, MigrationVersion $version): void;
+    public function markRolledBack(MigrationConfiguration $configuration, MigrationVersion $migrationVersion): void;
 
     /**
      * @return MigrationVersion[]

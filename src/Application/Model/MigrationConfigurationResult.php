@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Model;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Model;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Contract\ErrorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Contract\ErrorInterface;
 
 final readonly class MigrationConfigurationResult implements MigrationConfigurationResultInterface
 {

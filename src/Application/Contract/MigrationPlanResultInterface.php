@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlan;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Contract\ResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationPlan;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Contract\ResultInterface;
 
 interface MigrationPlanResultInterface extends ResultInterface
 {

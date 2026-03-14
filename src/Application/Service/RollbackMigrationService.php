@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRunnerInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\RollbackMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRunnerInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\RollbackMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationExecutionResult;
 
 final readonly class RollbackMigrationService implements RollbackMigrationInterface
 {

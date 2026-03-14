@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -90,7 +90,7 @@ final class ExecuteMigrationCommand extends Command
                 self::SUCCESS_PROCESSED_PREFIX . implode(
                     ', ',
                     array_map(
-                        static fn (\GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion $migrationVersion): string
+                        static fn (\GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion $migrationVersion): string
                             => $migrationVersion->className(),
                         $migrationExecutionResult->processedMigrationVersions(),
                     ),

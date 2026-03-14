@@ -2,41 +2,41 @@
 
 declare(strict_types=1);
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrateInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRegistryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRunnerInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\RollbackMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationPlanFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\CalculateMigrationPlanService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\ExecuteMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\GenerateMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\MigrateService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\ProvideMigrationStatusService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\RollbackMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\DependencyInjection\MongodbMigrationsExtension;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Configuration\ProvideMigrationConfigurationService;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\ExecuteMigrationCommand;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\GenerateMigrationCommand;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\MigrateCommand;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\RollbackMigrationCommand;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\StatusCommand;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\MongoDbMigrationRunner;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbDatabaseFactory;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbVersionStorage;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrateInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRegistryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRunnerInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\RollbackMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationPlanFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\CalculateMigrationPlanService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\ExecuteMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\GenerateMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\MigrateService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\ProvideMigrationStatusService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\RollbackMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\DependencyInjection\MongoDBMigrationsExtension;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Configuration\ProvideMigrationConfigurationService;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\ExecuteMigrationCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\GenerateMigrationCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\MigrateCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\RollbackMigrationCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\StatusCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\MongoDBMigrationRunner;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\DatabaseFactoryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBDatabaseFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBVersionStorage;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\param;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
@@ -55,11 +55,11 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(ProvideMigrationConfigurationService::class)
         ->args([
-            '$databaseName' => param(MongodbMigrationsExtension::PARAMETER_DATABASE),
-            '$migrationsNamespace' => param(MongodbMigrationsExtension::PARAMETER_MIGRATIONS_NAMESPACE),
-            '$migrationsDirectory' => param(MongodbMigrationsExtension::PARAMETER_MIGRATIONS_DIRECTORY),
-            '$versionCollectionName' => param(MongodbMigrationsExtension::PARAMETER_MIGRATIONS_COLLECTION),
-            '$databaseUrl' => param(MongodbMigrationsExtension::PARAMETER_URL),
+            '$databaseName' => param(MongoDBMigrationsExtension::PARAMETER_DATABASE),
+            '$migrationsNamespace' => param(MongoDBMigrationsExtension::PARAMETER_MIGRATIONS_NAMESPACE),
+            '$migrationsDirectory' => param(MongoDBMigrationsExtension::PARAMETER_MIGRATIONS_DIRECTORY),
+            '$versionCollectionName' => param(MongoDBMigrationsExtension::PARAMETER_MIGRATIONS_COLLECTION),
+            '$databaseUrl' => param(MongoDBMigrationsExtension::PARAMETER_URL),
             '$configurationSource' => null,
         ]);
     $services->alias(MigrationConfigurationProviderInterface::class, ProvideMigrationConfigurationService::class);
@@ -70,12 +70,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(FileMigrationRegistry::class);
     $services->alias(MigrationRegistryInterface::class, FileMigrationRegistry::class);
 
-    $services->set(MongoDbDatabaseFactory::class);
-    $services->alias(DatabaseFactoryInterface::class, MongoDbDatabaseFactory::class);
-    $services->set(MongoDbVersionStorage::class);
-    $services->alias(VersionStorageInterface::class, MongoDbVersionStorage::class);
-    $services->set(MongoDbMigrationRunner::class);
-    $services->alias(MigrationRunnerInterface::class, MongoDbMigrationRunner::class);
+    $services->set(MongoDBDatabaseFactory::class);
+    $services->alias(DatabaseFactoryInterface::class, MongoDBDatabaseFactory::class);
+    $services->set(MongoDBVersionStorage::class);
+    $services->alias(VersionStorageInterface::class, MongoDBVersionStorage::class);
+    $services->set(MongoDBMigrationRunner::class);
+    $services->alias(MigrationRunnerInterface::class, MongoDBMigrationRunner::class);
 
     $services->set(CalculateMigrationPlanService::class);
     $services->alias(MigrationPlanCalculatorInterface::class, CalculateMigrationPlanService::class);

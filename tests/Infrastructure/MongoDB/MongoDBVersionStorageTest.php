@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\MongoDb;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\MongoDB;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbVersionStorage;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\DatabaseFactoryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBVersionStorage;
 use MongoDB\Collection;
 use MongoDB\Database;
 use MongoDB\Driver\CursorInterface;
 use PHPUnit\Framework\TestCase;
 
-final class MongoDbVersionStorageTest extends TestCase
+final class MongoDBVersionStorageTest extends TestCase
 {
     public function testLatestExecutedReturnsNullWhenCollectionIsEmpty(): void
     {
@@ -33,7 +33,7 @@ final class MongoDbVersionStorageTest extends TestCase
             ->with([], ['sort' => ['version' => -1]])
             ->willReturn(null);
 
-        $versionStorage = new MongoDbVersionStorage($databaseFactory, new MigrationVersionFactory());
+        $versionStorage = new MongoDBVersionStorage($databaseFactory, new MigrationVersionFactory());
 
         self::assertNull($versionStorage->latestExecuted($configuration));
     }
@@ -52,7 +52,7 @@ final class MongoDbVersionStorageTest extends TestCase
             ->with(['version' => '20260221000000'])
             ->willReturn(['version' => '20260221000000']);
 
-        $versionStorage = new MongoDbVersionStorage($databaseFactory, new MigrationVersionFactory());
+        $versionStorage = new MongoDBVersionStorage($databaseFactory, new MigrationVersionFactory());
 
         self::assertTrue($versionStorage->has($configuration, $migrationVersion));
     }
@@ -73,7 +73,7 @@ final class MongoDbVersionStorageTest extends TestCase
                     && $document['executed_at'] instanceof \MongoDB\BSON\UTCDateTime;
             }));
 
-        $versionStorage = new MongoDbVersionStorage($databaseFactory, new MigrationVersionFactory());
+        $versionStorage = new MongoDBVersionStorage($databaseFactory, new MigrationVersionFactory());
         $versionStorage->markExecuted($configuration, $migrationVersion);
 
         self::assertTrue(true);
@@ -92,7 +92,7 @@ final class MongoDbVersionStorageTest extends TestCase
             ->method('deleteOne')
             ->with(['version' => '20260221000000']);
 
-        $versionStorage = new MongoDbVersionStorage($databaseFactory, new MigrationVersionFactory());
+        $versionStorage = new MongoDBVersionStorage($databaseFactory, new MigrationVersionFactory());
         $versionStorage->markRolledBack($configuration, $migrationVersion);
 
         self::assertTrue(true);
@@ -104,16 +104,10 @@ final class MongoDbVersionStorageTest extends TestCase
         $collection = $this->collectionMock();
         $database = $this->databaseMock($configuration, $collection);
         $databaseFactory = $this->databaseFactory($database);
-        $cursor = new class() implements CursorInterface, \IteratorAggregate
-        {
-            public function getIterator(): \Traversable
-            {
-                return new \ArrayIterator([
-                    ['version' => '20260221000000'],
-                    ['version' => '20260222000000'],
-                ]);
-            }
-        };
+        $cursor = new CursorFixture([
+            ['version' => '20260221000000'],
+            ['version' => '20260222000000'],
+        ]);
 
         $collection->expects(self::once())->method('createIndex')->willReturn('idx_version_unique');
         $collection->expects(self::once())
@@ -121,7 +115,7 @@ final class MongoDbVersionStorageTest extends TestCase
             ->with([], ['sort' => ['version' => 1]])
             ->willReturn($cursor);
 
-        $versionStorage = new MongoDbVersionStorage($databaseFactory, new MigrationVersionFactory());
+        $versionStorage = new MongoDBVersionStorage($databaseFactory, new MigrationVersionFactory());
         $migrationVersions = $versionStorage->all($configuration);
 
         self::assertCount(2, $migrationVersions);
@@ -159,16 +153,76 @@ final class MongoDbVersionStorageTest extends TestCase
 
     private function databaseFactory(Database $database): DatabaseFactoryInterface
     {
-        return new class($database) implements DatabaseFactoryInterface
-        {
-            public function __construct(private readonly Database $database)
-            {
-            }
+        return new class ($database) implements DatabaseFactoryInterface {
+            public function __construct(private readonly Database $database) {}
 
             public function create(MigrationConfiguration $configuration): Database
             {
                 return $this->database;
             }
         };
+    }
+}
+
+final class CursorFixture implements CursorInterface
+{
+    private int $position = 0;
+
+    /**
+     * @param array<int, array<string, string>> $documents
+     */
+    public function __construct(private readonly array $documents) {}
+
+    /**
+     * @return array<string, string>
+     */
+    public function current(): array
+    {
+        return $this->documents[$this->position];
+    }
+
+    public function next(): void
+    {
+        ++$this->position;
+    }
+
+    public function key(): int
+    {
+        return $this->position;
+    }
+
+    public function valid(): bool
+    {
+        return isset($this->documents[$this->position]);
+    }
+
+    public function rewind(): void
+    {
+        $this->position = 0;
+    }
+
+    public function getId(): \MongoDB\BSON\Int64
+    {
+        return new \MongoDB\BSON\Int64('1');
+    }
+
+    public function getServer(): \MongoDB\Driver\Server
+    {
+        return new \MongoDB\Driver\Server();
+    }
+
+    public function isDead(): bool
+    {
+        return false;
+    }
+
+    public function setTypeMap(array $typemap): void {}
+
+    /**
+     * @return array<int, array<string, string>>
+     */
+    public function toArray(): array
+    {
+        return $this->documents;
     }
 }

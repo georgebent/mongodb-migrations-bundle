@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Model;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Model;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationStatusResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Contract\ErrorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationStatus;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationStatusResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Contract\ErrorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationStatus;
 
 final readonly class MigrationStatusResult implements MigrationStatusResultInterface
 {

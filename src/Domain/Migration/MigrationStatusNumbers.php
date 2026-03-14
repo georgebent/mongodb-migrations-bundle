@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Domain\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Domain\Migration;
 
 final readonly class MigrationStatusNumbers
 {

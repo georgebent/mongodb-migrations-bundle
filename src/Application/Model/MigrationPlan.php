@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Model;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Model;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
 
 final readonly class MigrationPlan
 {

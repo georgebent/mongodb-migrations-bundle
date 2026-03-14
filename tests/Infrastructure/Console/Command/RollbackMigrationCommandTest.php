@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\Console\Command;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\Console\Command;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\RollbackMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationConfigurationResult;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\RollbackMigrationCommand;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfigurationProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\RollbackMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationConfigurationResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationExecutionResult;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\RollbackMigrationCommand;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Domain\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Domain\Contract;
 
 interface ResultInterface
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRegistryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationStatusResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationStatusResult;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRegistryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationStatusProviderInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationStatusResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationStatusResult;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
 
 final readonly class ProvideMigrationStatusService implements MigrationStatusProviderInterface
 {

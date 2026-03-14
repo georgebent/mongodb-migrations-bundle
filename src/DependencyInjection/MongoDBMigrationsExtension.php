@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\DependencyInjection;
+namespace GeorgeBent\MongoDBMigrationsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-final class MongodbMigrationsExtension extends Extension
+final class MongoDBMigrationsExtension extends Extension
 {
     public const string PARAMETER_DATABASE = 'mongodb_migrations.database';
 

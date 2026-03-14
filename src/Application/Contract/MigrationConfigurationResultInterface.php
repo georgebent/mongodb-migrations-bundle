@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Domain\Contract\ResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Contract\ResultInterface;
 
 interface MigrationConfigurationResultInterface extends ResultInterface
 {

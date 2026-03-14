@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRunnerInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationPlanFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\ApplicationError;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\GenerateMigrationResult;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlanResult;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\ExecuteMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\GenerateMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\MigrateService;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\RollbackMigrationService;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\GenerateMigrationResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationFileGeneratorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRunnerInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationPlanFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\ApplicationError;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\GenerateMigrationResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationExecutionResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationPlanResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\ExecuteMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\GenerateMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\MigrateService;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\RollbackMigrationService;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 use PHPUnit\Framework\TestCase;
 
 final class OrchestrationServicesTest extends TestCase

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Contract;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Contract;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlan;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationPlan;
 
 interface MigrationRunnerInterface
 {

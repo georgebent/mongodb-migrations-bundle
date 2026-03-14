@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRunnerInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\ExecuteMigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationPlanCalculatorInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRunnerInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationExecutionResult;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 
 final readonly class ExecuteMigrationService implements ExecuteMigrationInterface
 {

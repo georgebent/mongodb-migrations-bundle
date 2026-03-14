@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRunnerInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\ApplicationError;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
-use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlan;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationExecutionResultInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRunnerInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\ApplicationError;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationExecutionResult;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Model\MigrationPlan;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\DatabaseFactoryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface;
 
-final readonly class MongoDbMigrationRunner implements MigrationRunnerInterface
+final readonly class MongoDBMigrationRunner implements MigrationRunnerInterface
 {
     private const string ERROR_MIGRATION_INVALID_CLASS = 'migration_invalid_class';
 

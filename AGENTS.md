@@ -30,7 +30,7 @@ Target PHP 8.5 and Symfony 8+ components. Follow PSR-12 with 4-space indentation
 
 Use descriptive variable names; avoid placeholders such as `$value` or `$key`. Mark classes `final` whenever inheritance is not part of the design. Mark classes and promoted constructor properties `readonly` wherever immutability is possible. If a class defines `__toString()`, it must implement `\Stringable`. Do not use traits. Replace repeated or semantic string literals with class constants instead of inline values.
 
-Use Yoda style in conditionals, for example `if (null === $migrationVersion)` and `if (false === $result->isSuccess())`. Whenever a method returns `array` with typed elements, add a `/** @return Type[] */` docblock above every declaration: interface, implementation, and concrete class. Run PHP CS Fixer through the committed `.php-cs-fixer.dist.php` config. Match namespaces to paths exactly. Prefer explicit names such as `MigrationPlan`, `MigrationExecutor`, and `MongoDbConnectionProvider`.
+Use Yoda style in conditionals, for example `if (null === $migrationVersion)` and `if (false === $result->isSuccess())`. Whenever a method returns `array` with typed elements, add a `/** @return Type[] */` docblock above every declaration: interface, implementation, and concrete class. Run PHP CS Fixer through the committed `.php-cs-fixer.dist.php` config. Match namespaces to paths exactly. Prefer explicit names such as `MigrationPlan`, `MigrationExecutor`, and `MongoDBConnectionProvider`.
 
 Only entry points may use `try/catch`, primarily Symfony console commands. Domain and Application layers must not catch exceptions. Model operational outcomes through `ErrorInterface` and `ResultInterface`, and let commands translate failures to console output and exit codes.
 

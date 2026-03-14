@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\MongoDb;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\MongoDB;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbDatabaseFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBDatabaseFactory;
 use PHPUnit\Framework\TestCase;
 
-final class MongoDbDatabaseFactoryTest extends TestCase
+final class MongoDBDatabaseFactoryTest extends TestCase
 {
     public function testItRejectsMissingDatabaseUrl(): void
     {
         $this->expectException(\LogicException::class);
         $this->expectExceptionMessage('MongoDB database URL is not configured.');
 
-        (new MongoDbDatabaseFactory())->create(new MigrationConfiguration(
+        (new MongoDBDatabaseFactory())->create(new MigrationConfiguration(
             'test_database',
             'App\\Migrations',
             '/tmp/migrations',

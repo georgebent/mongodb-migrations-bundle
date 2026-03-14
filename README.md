@@ -48,7 +48,7 @@ The bundle follows explicit layer separation:
 
 ## Migration Example
 
-Generated migration classes implement `GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface` and use the `VersionYYYYMMDDHHMMSS` naming pattern.
+Generated migration classes implement `GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface` and use the `VersionYYYYMMDDHHMMSS` naming pattern.
 
 Example:
 
@@ -59,7 +59,7 @@ declare(strict_types=1);
 
 namespace App\Migrations;
 
-use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface;
 use MongoDB\Database;
 
 final class Version20260221000000 implements MigrationInterface

@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationPlanFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\MongoDbMigrationRunner;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationPlanFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\ExecutionDirection;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\MongoDBMigrationRunner;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\DatabaseFactoryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Migration\MigrationInterface;
 use MongoDB\Database;
 use PHPUnit\Framework\TestCase;
 
-final class MongoDbMigrationRunnerTest extends TestCase
+final class MongoDBMigrationRunnerTest extends TestCase
 {
     protected function tearDown(): void
     {
@@ -43,7 +43,7 @@ final class MongoDbMigrationRunnerTest extends TestCase
 
         $versionStorage->expects(self::never())->method('markRolledBack');
 
-        $migrationExecutionResult = (new MongoDbMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
             ->run($configuration, $migrationPlan);
 
         self::assertTrue($migrationExecutionResult->isSuccess());
@@ -69,7 +69,7 @@ final class MongoDbMigrationRunnerTest extends TestCase
 
         $versionStorage->expects(self::never())->method('markExecuted');
 
-        $migrationExecutionResult = (new MongoDbMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
             ->run($configuration, $migrationPlan);
 
         self::assertTrue($migrationExecutionResult->isSuccess());
@@ -91,7 +91,7 @@ final class MongoDbMigrationRunnerTest extends TestCase
         $versionStorage->expects(self::never())->method('markExecuted');
         $versionStorage->expects(self::never())->method('markRolledBack');
 
-        $migrationExecutionResult = (new MongoDbMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
             ->run($configuration, $migrationPlan);
 
         self::assertFalse($migrationExecutionResult->isSuccess());
@@ -111,11 +111,8 @@ final class MongoDbMigrationRunnerTest extends TestCase
 
     private function databaseFactory(Database $database): DatabaseFactoryInterface
     {
-        return new class($database) implements DatabaseFactoryInterface
-        {
-            public function __construct(private readonly Database $database)
-            {
-            }
+        return new class ($database) implements DatabaseFactoryInterface {
+            public function __construct(private readonly Database $database) {}
 
             public function create(MigrationConfiguration $configuration): Database
             {
@@ -146,6 +143,4 @@ final class RunnerUpMigrationFixture implements MigrationInterface
     }
 }
 
-final class InvalidRunnerMigrationFixture
-{
-}
+final class InvalidRunnerMigrationFixture {}

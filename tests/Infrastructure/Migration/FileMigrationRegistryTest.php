@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Infrastructure\Migration;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Infrastructure\Migration;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry;
 use PHPUnit\Framework\TestCase;
 
 final class FileMigrationRegistryTest extends TestCase
@@ -17,7 +17,7 @@ final class FileMigrationRegistryTest extends TestCase
     {
         $configuration = new MigrationConfiguration(
             'test_database',
-            'GeorgeBent\\MongodbMigrationsBundle\\Tests\\Fixtures\\Migrations',
+            'GeorgeBent\\MongoDBMigrationsBundle\\Tests\\Fixtures\\Migrations',
             __DIR__ . '/../../Fixtures/Migrations',
             'migrations',
             'mongodb://localhost:27017',
@@ -37,7 +37,7 @@ final class FileMigrationRegistryTest extends TestCase
     {
         $configuration = new MigrationConfiguration(
             'test_database',
-            'GeorgeBent\\MongodbMigrationsBundle\\Tests\\Fixtures\\Migrations',
+            'GeorgeBent\\MongoDBMigrationsBundle\\Tests\\Fixtures\\Migrations',
             __DIR__ . '/../../Fixtures/Migrations',
             'migrations',
             'mongodb://localhost:27017',

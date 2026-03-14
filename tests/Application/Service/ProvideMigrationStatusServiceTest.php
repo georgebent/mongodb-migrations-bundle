@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Tests\Application\Service;
+namespace GeorgeBent\MongoDBMigrationsBundle\Tests\Application\Service;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationRegistryInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Application\Service\ProvideMigrationStatusService;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationRegistryInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationDefinitionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Service\ProvideMigrationStatusService;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 use PHPUnit\Framework\TestCase;
 
 final class ProvideMigrationStatusServiceTest extends TestCase

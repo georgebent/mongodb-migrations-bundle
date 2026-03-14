@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb;
+namespace GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB;
 
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\MigrationConfiguration;
-use GeorgeBent\MongodbMigrationsBundle\Application\Contract\VersionStorageInterface;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
-use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\MigrationVersion;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\MigrationConfiguration;
+use GeorgeBent\MongoDBMigrationsBundle\Application\Contract\VersionStorageInterface;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory;
+use GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\MigrationVersion;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Collection;
 
-final readonly class MongoDbVersionStorage implements VersionStorageInterface
+final readonly class MongoDBVersionStorage implements VersionStorageInterface
 {
     private const string FIELD_VERSION = 'version';
 
