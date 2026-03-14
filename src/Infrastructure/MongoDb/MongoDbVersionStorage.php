@@ -20,7 +20,7 @@ final readonly class MongoDbVersionStorage implements VersionStorageInterface
     private const string INDEX_NAME_VERSION = 'idx_version_unique';
 
     public function __construct(
-        private MongoDbDatabaseFactory $mongoDbDatabaseFactory,
+        private DatabaseFactoryInterface $databaseFactory,
         private MigrationVersionFactory $migrationVersionFactory,
     ) {}
 
@@ -85,7 +85,7 @@ final readonly class MongoDbVersionStorage implements VersionStorageInterface
 
     private function versionCollection(MigrationConfiguration $configuration): Collection
     {
-        $versionCollection = $this->mongoDbDatabaseFactory
+        $versionCollection = $this->databaseFactory
             ->create($configuration)
             ->selectCollection($configuration->versionCollectionName());
 

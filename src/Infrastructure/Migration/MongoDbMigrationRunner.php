@@ -12,7 +12,7 @@ use GeorgeBent\MongodbMigrationsBundle\Application\Model\ApplicationError;
 use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationExecutionResult;
 use GeorgeBent\MongodbMigrationsBundle\Application\Model\MigrationPlan;
 use GeorgeBent\MongodbMigrationsBundle\Domain\Migration\ExecutionDirection;
-use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbDatabaseFactory;
+use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
 use GeorgeBent\MongodbMigrationsBundle\Migration\MigrationInterface;
 
 final readonly class MongoDbMigrationRunner implements MigrationRunnerInterface
@@ -22,7 +22,7 @@ final readonly class MongoDbMigrationRunner implements MigrationRunnerInterface
     private const string MESSAGE_MIGRATION_INVALID_CLASS = 'Configured migration class must implement the bundle migration interface.';
 
     public function __construct(
-        private MongoDbDatabaseFactory $mongoDbDatabaseFactory,
+        private DatabaseFactoryInterface $databaseFactory,
         private VersionStorageInterface $versionStorage,
     ) {}
 
@@ -30,7 +30,7 @@ final readonly class MongoDbMigrationRunner implements MigrationRunnerInterface
         MigrationConfiguration $configuration,
         MigrationPlan $migrationPlan,
     ): MigrationExecutionResultInterface {
-        $database = $this->mongoDbDatabaseFactory->create($configuration);
+        $database = $this->databaseFactory->create($configuration);
         $processedMigrationVersions = [];
 
         foreach ($migrationPlan->migrations() as $migrationDefinition) {

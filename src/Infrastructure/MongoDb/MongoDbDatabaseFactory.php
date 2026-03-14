@@ -9,6 +9,7 @@ use MongoDB\Client;
 use MongoDB\Database;
 
 final readonly class MongoDbDatabaseFactory
+implements DatabaseFactoryInterface
 {
     private const string ERROR_DATABASE_URL_MISSING = 'MongoDB database URL is not configured.';
 

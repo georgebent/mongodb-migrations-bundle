@@ -34,6 +34,7 @@ use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Console\Command\StatusComm
 use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator;
 use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry;
 use GeorgeBent\MongodbMigrationsBundle\Infrastructure\Migration\MongoDbMigrationRunner;
+use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\DatabaseFactoryInterface;
 use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbDatabaseFactory;
 use GeorgeBent\MongodbMigrationsBundle\Infrastructure\MongoDb\MongoDbVersionStorage;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -70,6 +71,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->alias(MigrationRegistryInterface::class, FileMigrationRegistry::class);
 
     $services->set(MongoDbDatabaseFactory::class);
+    $services->alias(DatabaseFactoryInterface::class, MongoDbDatabaseFactory::class);
     $services->set(MongoDbVersionStorage::class);
     $services->alias(VersionStorageInterface::class, MongoDbVersionStorage::class);
     $services->set(MongoDbMigrationRunner::class);
