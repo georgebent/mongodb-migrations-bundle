@@ -206,9 +206,12 @@ final class CursorFixture implements CursorInterface
         return new \MongoDB\BSON\Int64('1');
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function getServer(): \MongoDB\Driver\Server
     {
-        return new \MongoDB\Driver\Server();
+        return new \ReflectionClass(\MongoDB\Driver\Server::class)->newInstanceWithoutConstructor();
     }
 
     public function isDead(): bool
