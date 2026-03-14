@@ -16,10 +16,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: self::NAME)]
+#[AsCommand(name: self::NAME, description: self::DESCRIPTION)]
 final class ExecuteMigrationCommand extends Command
 {
     private const string NAME = 'mongodb:migrations:execute';
+
+    private const string DESCRIPTION = 'Execute a specific MongoDB migration version.';
 
     private const string ARGUMENT_VERSION = 'version';
 

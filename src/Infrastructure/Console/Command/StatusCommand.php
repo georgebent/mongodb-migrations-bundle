@@ -14,10 +14,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: self::NAME)]
+#[AsCommand(name: self::NAME, description: self::DESCRIPTION)]
 final class StatusCommand extends Command
 {
     private const string NAME = 'mongodb:migrations:status';
+
+    private const string DESCRIPTION = 'Show MongoDB migration status information.';
 
     private const string FALLBACK_CONFIGURATION_SOURCE = 'n/a';
 

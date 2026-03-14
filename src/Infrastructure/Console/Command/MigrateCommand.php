@@ -12,10 +12,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: self::NAME)]
+#[AsCommand(name: self::NAME, description: self::DESCRIPTION)]
 final class MigrateCommand extends Command
 {
     private const string NAME = 'mongodb:migrations:migrate';
+
+    private const string DESCRIPTION = 'Execute all new MongoDB migrations.';
 
     private const string ERROR_CONFIGURATION_INVALID = 'Migration configuration is invalid.';
 

@@ -12,10 +12,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-#[AsCommand(name: self::NAME)]
+#[AsCommand(name: self::NAME, description: self::DESCRIPTION)]
 final class RollbackMigrationCommand extends Command
 {
     private const string NAME = 'mongodb:migrations:rollback';
+
+    private const string DESCRIPTION = 'Roll back the latest executed MongoDB migration.';
 
     private const string ERROR_CONFIGURATION_INVALID = 'Migration configuration is invalid.';
 
