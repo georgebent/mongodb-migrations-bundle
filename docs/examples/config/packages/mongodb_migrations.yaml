@@ -1,0 +1,6 @@
+mongodb_migrations:
+    url: '%env(MONGODB_URL)%'
+    database: '%env(MONGODB_DB)%'
+    migrations_collection: migrations
+    migrations_directory: '%kernel.project_dir%/migrations'
+    migrations_namespace: 'App\Migrations'

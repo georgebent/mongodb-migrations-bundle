@@ -1,0 +1,50 @@
+name: PHPUnit
+
+on:
+    push:
+    pull_request:
+
+permissions:
+    contents: read
+
+jobs:
+    phpunit:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.5'
+                  extensions: mongodb
+                  coverage: none
+
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+            - name: Cache composer downloads
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-phpunit-composer-${{ hashFiles('**/composer.lock', '**/composer.json') }}
+                  restore-keys: ${{ runner.os }}-phpunit-composer-
+
+            - name: Install dependencies
+              run: |
+                  if [ -f composer.lock ]; then
+                    composer install --prefer-dist --no-progress
+                  else
+                    composer update --prefer-dist --no-progress
+                  fi
+
+            - name: Run PHPUnit
+              run: |
+                  if find tests -type f -name '*Test.php' -print -quit >/dev/null 2>&1; then
+                    composer test
+                  else
+                    echo "No PHPUnit tests found yet"
+                  fi
