@@ -34,7 +34,7 @@ final class MongoDBMigrationRunnerTest extends TestCase
         $migrationVersion = new MigrationVersion('20260221000000');
         $migrationPlan = (new MigrationPlanFactory())->create(
             ExecutionDirection::Up,
-            [(new MigrationDefinitionFactory())->create($migrationVersion, RunnerUpMigrationFixture::class)],
+            [new MigrationDefinitionFactory()->create($migrationVersion, RunnerUpMigrationFixture::class)],
         );
 
         $versionStorage->expects(self::once())
@@ -43,7 +43,7 @@ final class MongoDBMigrationRunnerTest extends TestCase
 
         $versionStorage->expects(self::never())->method('markRolledBack');
 
-        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = new MongoDBMigrationRunner($databaseFactory, $versionStorage)
             ->run($configuration, $migrationPlan);
 
         self::assertTrue($migrationExecutionResult->isSuccess());
@@ -58,9 +58,9 @@ final class MongoDBMigrationRunnerTest extends TestCase
         $versionStorage = $this->createMock(VersionStorageInterface::class);
         $configuration = $this->migrationConfiguration();
         $migrationVersion = new MigrationVersion('20260221000000');
-        $migrationPlan = (new MigrationPlanFactory())->create(
+        $migrationPlan = new MigrationPlanFactory()->create(
             ExecutionDirection::Down,
-            [(new MigrationDefinitionFactory())->create($migrationVersion, RunnerUpMigrationFixture::class)],
+            [new MigrationDefinitionFactory()->create($migrationVersion, RunnerUpMigrationFixture::class)],
         );
 
         $versionStorage->expects(self::once())
@@ -69,7 +69,7 @@ final class MongoDBMigrationRunnerTest extends TestCase
 
         $versionStorage->expects(self::never())->method('markExecuted');
 
-        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = new MongoDBMigrationRunner($databaseFactory, $versionStorage)
             ->run($configuration, $migrationPlan);
 
         self::assertTrue($migrationExecutionResult->isSuccess());
@@ -83,15 +83,15 @@ final class MongoDBMigrationRunnerTest extends TestCase
         $versionStorage = $this->createMock(VersionStorageInterface::class);
         $configuration = $this->migrationConfiguration();
         $migrationVersion = new MigrationVersion('20260221000000');
-        $migrationPlan = (new MigrationPlanFactory())->create(
+        $migrationPlan = new MigrationPlanFactory()->create(
             ExecutionDirection::Up,
-            [(new MigrationDefinitionFactory())->create($migrationVersion, InvalidRunnerMigrationFixture::class)],
+            [new MigrationDefinitionFactory()->create($migrationVersion, InvalidRunnerMigrationFixture::class)],
         );
 
         $versionStorage->expects(self::never())->method('markExecuted');
         $versionStorage->expects(self::never())->method('markRolledBack');
 
-        $migrationExecutionResult = (new MongoDBMigrationRunner($databaseFactory, $versionStorage))
+        $migrationExecutionResult = new MongoDBMigrationRunner($databaseFactory, $versionStorage)
             ->run($configuration, $migrationPlan);
 
         self::assertFalse($migrationExecutionResult->isSuccess());
@@ -111,8 +111,8 @@ final class MongoDBMigrationRunnerTest extends TestCase
 
     private function databaseFactory(Database $database): DatabaseFactoryInterface
     {
-        return new class ($database) implements DatabaseFactoryInterface {
-            public function __construct(private readonly Database $database) {}
+        return new readonly class ($database) implements DatabaseFactoryInterface {
+            public function __construct(private Database $database) {}
 
             public function create(MigrationConfiguration $configuration): Database
             {

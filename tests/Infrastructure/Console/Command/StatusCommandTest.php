@@ -42,7 +42,7 @@ final class StatusCommandTest extends TestCase
                     '/tmp/migrations',
                     new MigrationVersion('20260221000000'),
                     new MigrationVersion('20260222000000'),
-                    (new MigrationStatusNumbersFactory())->create(1, 0, 2, 1),
+                    new MigrationStatusNumbersFactory()->create(1, 0, 2, 1),
                 ),
             ));
 

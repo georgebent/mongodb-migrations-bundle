@@ -20,6 +20,6 @@ final readonly class MongoDBDatabaseFactory implements DatabaseFactoryInterface
             throw new \LogicException(self::ERROR_DATABASE_URL_MISSING);
         }
 
-        return (new Client($databaseUrl))->selectDatabase($configuration->databaseName());
+        return new Client($databaseUrl)->selectDatabase($configuration->databaseName());
     }
 }

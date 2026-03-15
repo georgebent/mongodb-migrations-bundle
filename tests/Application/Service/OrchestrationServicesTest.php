@@ -38,10 +38,10 @@ final class OrchestrationServicesTest extends TestCase
             )
             ->willReturn(new GenerateMigrationResult(true, new MigrationVersion('20260221000000')));
 
-        $generateMigrationResult = (new GenerateMigrationService(
+        $generateMigrationResult = new GenerateMigrationService(
             new MigrationVersionFactory(),
             $migrationFileGenerator,
-        ))->generate($configuration);
+        )->generate($configuration);
 
         self::assertTrue($generateMigrationResult->isSuccess());
         self::assertSame('20260221000000', $generateMigrationResult->generatedMigrationVersion()?->value());
@@ -86,10 +86,10 @@ final class OrchestrationServicesTest extends TestCase
             ->with($configuration, $migrationPlan)
             ->willReturn($expectedResult);
 
-        $migrationExecutionResult = (new ExecuteMigrationService(
+        $migrationExecutionResult = new ExecuteMigrationService(
             $migrationPlanCalculator,
             $migrationRunner,
-        ))->execute($configuration, $migrationVersion, ExecutionDirection::Up);
+        )->execute($configuration, $migrationVersion, ExecutionDirection::Up);
 
         self::assertSame($expectedResult, $migrationExecutionResult);
     }
@@ -100,7 +100,7 @@ final class OrchestrationServicesTest extends TestCase
         $migrationRunner = $this->createMock(MigrationRunnerInterface::class);
         $configuration = $this->migrationConfiguration();
         $migrationVersion = new MigrationVersion('20260221000000');
-        $migrationPlan = (new MigrationPlanFactory())->create(ExecutionDirection::Down, []);
+        $migrationPlan = new MigrationPlanFactory()->create(ExecutionDirection::Down, []);
         $expectedResult = new MigrationExecutionResult(true, [$migrationVersion]);
 
         $migrationPlanCalculator->expects(self::once())
@@ -113,10 +113,10 @@ final class OrchestrationServicesTest extends TestCase
             ->with($configuration, $migrationPlan)
             ->willReturn($expectedResult);
 
-        $migrationExecutionResult = (new RollbackMigrationService(
+        $migrationExecutionResult = new RollbackMigrationService(
             $migrationPlanCalculator,
             $migrationRunner,
-        ))->rollback($configuration);
+        )->rollback($configuration);
 
         self::assertSame($expectedResult, $migrationExecutionResult);
     }

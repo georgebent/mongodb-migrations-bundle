@@ -23,10 +23,10 @@ final class FileMigrationRegistryTest extends TestCase
             'mongodb://localhost:27017',
         );
 
-        $migrationDefinitions = (new FileMigrationRegistry(
+        $migrationDefinitions = new FileMigrationRegistry(
             new MigrationDefinitionFactory(),
             new MigrationVersionFactory(),
-        ))->all($configuration);
+        )->all($configuration);
 
         self::assertCount(2, $migrationDefinitions);
         self::assertSame('20260221000000', $migrationDefinitions[0]->version()->value());
@@ -44,10 +44,10 @@ final class FileMigrationRegistryTest extends TestCase
         );
         $migrationVersion = new MigrationVersion('20260222000000');
 
-        $migrationDefinition = (new FileMigrationRegistry(
+        $migrationDefinition = new FileMigrationRegistry(
             new MigrationDefinitionFactory(),
             new MigrationVersionFactory(),
-        ))->find($configuration, $migrationVersion);
+        )->find($configuration, $migrationVersion);
 
         self::assertNotNull($migrationDefinition);
         self::assertSame('20260222000000', $migrationDefinition->version()->value());
