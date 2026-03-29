@@ -1,0 +1,169 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    mongodb_migration_bundle.domain.migration_version_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationVersionFactory
+
+    mongodb_migration_bundle.domain.migration_status_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusFactory
+
+    mongodb_migration_bundle.domain.migration_status_numbers_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Domain\Migration\Factory\MigrationStatusNumbersFactory
+
+    mongodb_migration_bundle.application.migration_definition_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationDefinitionFactory
+
+    mongodb_migration_bundle.application.migration_plan_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Factory\MigrationPlanFactory
+
+    mongodb_migration_bundle.infrastructure.provide_migration_configuration_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Configuration\ProvideMigrationConfigurationService
+        arguments:
+            - '%mongodb_migrations.database%'
+            - '%mongodb_migrations.migrations_namespace%'
+            - '%mongodb_migrations.migrations_directory%'
+            - '%mongodb_migrations.migrations_collection%'
+            - '%mongodb_migrations.url%'
+            - null
+
+    mongodb_migration_bundle.application.migration_configuration_provider:
+        alias: mongodb_migration_bundle.infrastructure.provide_migration_configuration_service
+
+    mongodb_migration_bundle.infrastructure.file_migration_file_generator:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationFileGenerator
+
+    mongodb_migration_bundle.application.migration_file_generator:
+        alias: mongodb_migration_bundle.infrastructure.file_migration_file_generator
+
+    mongodb_migration_bundle.infrastructure.file_migration_registry:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\FileMigrationRegistry
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_definition_factory'
+            - '@mongodb_migration_bundle.domain.migration_version_factory'
+
+    mongodb_migration_bundle.application.migration_registry:
+        alias: mongodb_migration_bundle.infrastructure.file_migration_registry
+
+    mongodb_migration_bundle.infrastructure.mongodb_database_factory:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBDatabaseFactory
+
+    mongodb_migration_bundle.infrastructure.database_factory:
+        alias: mongodb_migration_bundle.infrastructure.mongodb_database_factory
+
+    mongodb_migration_bundle.infrastructure.mongodb_version_storage:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\MongoDB\MongoDBVersionStorage
+        arguments:
+            - '@mongodb_migration_bundle.infrastructure.database_factory'
+            - '@mongodb_migration_bundle.domain.migration_version_factory'
+
+    mongodb_migration_bundle.application.version_storage:
+        alias: mongodb_migration_bundle.infrastructure.mongodb_version_storage
+
+    mongodb_migration_bundle.infrastructure.mongodb_migration_runner:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Migration\MongoDBMigrationRunner
+        arguments:
+            - '@mongodb_migration_bundle.infrastructure.database_factory'
+            - '@mongodb_migration_bundle.application.version_storage'
+
+    mongodb_migration_bundle.application.migration_runner:
+        alias: mongodb_migration_bundle.infrastructure.mongodb_migration_runner
+
+    mongodb_migration_bundle.application.calculate_migration_plan_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\CalculateMigrationPlanService
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_registry'
+            - '@mongodb_migration_bundle.application.version_storage'
+            - '@mongodb_migration_bundle.application.migration_plan_factory'
+
+    mongodb_migration_bundle.application.migration_plan_calculator:
+        alias: mongodb_migration_bundle.application.calculate_migration_plan_service
+
+    mongodb_migration_bundle.application.provide_migration_status_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\ProvideMigrationStatusService
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_registry'
+            - '@mongodb_migration_bundle.application.version_storage'
+            - '@mongodb_migration_bundle.domain.migration_status_factory'
+            - '@mongodb_migration_bundle.domain.migration_status_numbers_factory'
+
+    mongodb_migration_bundle.application.migration_status_provider:
+        alias: mongodb_migration_bundle.application.provide_migration_status_service
+
+    mongodb_migration_bundle.application.generate_migration_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\GenerateMigrationService
+        arguments:
+            - '@mongodb_migration_bundle.domain.migration_version_factory'
+            - '@mongodb_migration_bundle.application.migration_file_generator'
+
+    mongodb_migration_bundle.application.generate_migration:
+        alias: mongodb_migration_bundle.application.generate_migration_service
+
+    mongodb_migration_bundle.application.migrate_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\MigrateService
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_plan_calculator'
+            - '@mongodb_migration_bundle.application.migration_runner'
+
+    mongodb_migration_bundle.application.migrate:
+        alias: mongodb_migration_bundle.application.migrate_service
+
+    mongodb_migration_bundle.application.execute_migration_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\ExecuteMigrationService
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_plan_calculator'
+            - '@mongodb_migration_bundle.application.migration_runner'
+
+    mongodb_migration_bundle.application.execute_migration:
+        alias: mongodb_migration_bundle.application.execute_migration_service
+
+    mongodb_migration_bundle.application.rollback_migration_service:
+        class: GeorgeBent\MongoDBMigrationsBundle\Application\Service\RollbackMigrationService
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_plan_calculator'
+            - '@mongodb_migration_bundle.application.migration_runner'
+
+    mongodb_migration_bundle.application.rollback_migration:
+        alias: mongodb_migration_bundle.application.rollback_migration_service
+
+    mongodb_migration_bundle.console.generate_migration_command:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\GenerateMigrationCommand
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_configuration_provider'
+            - '@mongodb_migration_bundle.application.generate_migration'
+        tags:
+            - { name: console.command }
+
+    mongodb_migration_bundle.console.status_command:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\StatusCommand
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_configuration_provider'
+            - '@mongodb_migration_bundle.application.migration_status_provider'
+        tags:
+            - { name: console.command }
+
+    mongodb_migration_bundle.console.migrate_command:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\MigrateCommand
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_configuration_provider'
+            - '@mongodb_migration_bundle.application.migrate'
+        tags:
+            - { name: console.command }
+
+    mongodb_migration_bundle.console.execute_migration_command:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\ExecuteMigrationCommand
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_configuration_provider'
+            - '@mongodb_migration_bundle.application.execute_migration'
+            - '@mongodb_migration_bundle.domain.migration_version_factory'
+        tags:
+            - { name: console.command }
+
+    mongodb_migration_bundle.console.rollback_migration_command:
+        class: GeorgeBent\MongoDBMigrationsBundle\Infrastructure\Console\Command\RollbackMigrationCommand
+        arguments:
+            - '@mongodb_migration_bundle.application.migration_configuration_provider'
+            - '@mongodb_migration_bundle.application.rollback_migration'
+        tags:
+            - { name: console.command }

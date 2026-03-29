@@ -7,7 +7,7 @@ namespace GeorgeBent\MongoDBMigrationsBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class MongoDBMigrationsExtension extends Extension
 {
@@ -41,8 +41,8 @@ final class MongoDBMigrationsExtension extends Extension
             $processedConfiguration[Configuration::KEY_MIGRATIONS_NAMESPACE],
         );
 
-        $loader = new PhpFileLoader($container, new FileLocator(dirname(__DIR__, 2) . '/config'));
-        $loader->load('services.php');
+        $loader = new YamlFileLoader($container, new FileLocator(dirname(__DIR__, 2) . '/config'));
+        $loader->load('services.yaml');
     }
 
     public function getAlias(): string
